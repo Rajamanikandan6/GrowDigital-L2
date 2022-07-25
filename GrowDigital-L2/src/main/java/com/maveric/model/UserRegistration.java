@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
+@Entity(name = "user_register_login")
 @Table(name = "user_register_login")
 public class UserRegistration {
 

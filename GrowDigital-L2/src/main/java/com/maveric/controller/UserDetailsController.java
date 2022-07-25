@@ -1,6 +1,8 @@
 package com.maveric.controller;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,24 +25,26 @@ public class UserDetailsController {
 	}
 	
 	@PostMapping("/addUserDetails")
-	public ResponseEntity<customerDetails> RegisterUser(UserRegistration user) { 
+	public customerDetails RegisterUser(UserRegistration user) { 
 		
 		customerDetails cus_data = userDetailsService.findCustomerDetailsById(user.getCustomer_id());
 		
 		if(cus_data != null) 
 		{
-			if(cus_data.getEmail().equalsIgnoreCase(user.getEmail())) {
+			List<UserRegistration> oldUser = userDetailsService.findRegisterUserById(user.getCustomer_id(),user.getEmail());
+			if(oldUser.isEmpty()) {
 				UserRegistration addedCustomerDetails = userDetailsService.registerUser(user);
 				}
 			else {
-				return new ResponseEntity(null,HttpStatus.NO_CONTENT);
+				return null;
 			}
 		
-		return new ResponseEntity(cus_data,HttpStatus.OK);
+		return cus_data;
 		
-		}else {
+		}
+		else {
 			
-			return new ResponseEntity(cus_data,HttpStatus.NO_CONTENT);
+			return null;
 			
 		}
 		

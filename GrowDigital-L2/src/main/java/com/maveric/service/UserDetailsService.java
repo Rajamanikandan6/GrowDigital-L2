@@ -4,6 +4,8 @@ import com.maveric.model.customerDetails;
 import com.maveric.repository.CustomerDetailsRepository;
 import com.maveric.repository.UserRegisterRepository;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,10 @@ public class UserDetailsService {
 		
 		return userRegisterRepo.save(user);
 		
+	}
+	
+	public List<UserRegistration> findRegisterUserById(int id,String email) {
+		return userRegisterRepo.checkUserAvailable(id,email);
 	}
 	
 	public customerDetails findCustomerDetailsById(int cus_id) {

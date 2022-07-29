@@ -33,7 +33,8 @@ public class UserDetailsController {
 	@GetMapping("/login")
 	public String login() {
 		
-		return "login.jsp";
+		
+		return "login.jspp";
 	}
 	
 	@PostMapping("/addUserDetails")

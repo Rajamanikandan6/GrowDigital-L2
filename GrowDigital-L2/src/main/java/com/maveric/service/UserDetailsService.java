@@ -36,4 +36,10 @@ public class UserDetailsService {
 		return CustomerDetailsRepo.findById(cus_id).orElse(null);
 			
 	}
+	
+	public UserRegistration getUserDetails(String email,String password) {
+		
+		return userRegisterRepo.getUser(email,password);
+		
+	}
 }

@@ -13,5 +13,8 @@ public interface UserRegisterRepository extends JpaRepository<UserRegistration, 
 
 	@Query("SELECT ud from user_register_login ud where customer_id=?1 and email=?2")
 	List<UserRegistration> checkUserAvailable(int id,String email);
+	
+	@Query("SELECT userDet from user_register_login userDet where email=?1 and password=?2")
+	UserRegistration getUser(String email,String password);
 
 }
